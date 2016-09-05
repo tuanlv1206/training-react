@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <style type="text/css">
+      .example-appear{
+        opacity: 0.01;
+      }
+      .example-appear.example-appear-active{
+        opacity: 1;
+        transition: opacity 1000ms ease-in;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+
+      var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+      class App extends React.Component {
+        render(){
+          return (
+            <div>
+              <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={500} transitionEnter={false} transitionLeave={false}>
+                <h1>My Element...</h1>
+              </ReactCSSTransitionGroup>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.8.1/immutable.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+      var User = Immutable.Record({
+        id: undefined,
+        name: undefined,
+        email: undefined
+      });
+
+      var Message = Immutable.Record({
+        timestamp: new Date(),
+        sender: undefined,
+        text: ''
+      });
+
+      console.log(User)
+      var update = React.addons.update;
+      var collection = [1, 2, {a: [12, 17, 15]}];
+      var newCollection = update(collection, {2: {a: {$splice: [[1, 1, 13, 14]]}}});
+      console.log(newCollection);
+
+      var initialArray = [1, 2, 3];
+      var newArray = update(initialArray, {$push: [4]});
+      alert(newArray);
+
+      var unshiftArray = update(initialArray, {$unshift: [4]});
+      alert(unshiftArray);
+
+    </script>
+  </body>
+</html>

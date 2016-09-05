@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+    class App extends React.Component{
+      constructor(props){
+        super(props);
+        this.state={
+          data: 0
+        }
+        this.setNewNumber = this.setNewNumber.bind(this)
+      }
+      setNewNumber(){
+        this.setState({data: this.state.data + 1})
+      }
+      render(){
+        return (
+            <div>
+              <button onClick={this.setNewNumber}>INCREMENT</button>
+              <Content myNumber={this.state.data}></Content>
+            </div>
+          );
+      }
+    }
+
+    class Content extends React.Component{
+      componentWillMount(){
+        alert("Component Will Mount");
+      }
+      componentDidMount(){
+        alert("Component Did Mount");
+      }
+      componentWillReceiveProps(newProps){
+        alert("Component will receive props")
+      }
+      shouldComponentUpdate(newProps, newState){
+        alert("Should component update");
+        return true;
+      }
+      componentWillUpdate(nexProps, nextState){
+        alert("Component will update");
+      }
+      componentDidUpdate(preProps, prevState){
+        alert("Component did update");
+      }
+      componentWillUnmount(){
+        alert("Component will unmount");
+      }
+      render(){
+        return (
+          <div>
+            <h3>{this.props.myNumber}</h3>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('example')
+      )
+    setTimeout(() => {
+      ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+    }, 15000)
+    </script>
+  </body>
+</html>

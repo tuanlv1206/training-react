@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
+
+
+    </head>
+    <body>
+    <div id="myDiv"></div>
+    <script type="text/javascript">
+
+function once(fn) {
+    var returnValue, called = false;
+    return function () {
+        if (!called) {
+            called = true;
+            returnValue = fn.apply(this, arguments);
+        }
+        return returnValue;
+    };
+}
+describe("#myDiv", function(){
+  it("calls the original function", function () {
+    var callback = sinon.spy();
+    var proxy = once(callback);
+
+    proxy();
+
+    assert(callback.called);
+});
+});
+
+    </script>
+    </body>
+</html>

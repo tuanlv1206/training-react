@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-15.2.1.js"></script>
+        <script src="https://fb.me/react-dom-15.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+        <title>My First React File</title>
+
+    </head>
+    <body>
+    <div id="myDiv"></div>
+    <script type="text/babel">
+      var MyComponent = React.createClass({
+        render: function() {
+          return <div>
+              <h1>{this.props.text}</h1>
+              <p>{this.props.children}</p>
+          </div>
+        }
+      });
+
+      ReactDOM.render(<div>
+        <MyComponent text="Hello World">
+        This is a hello.
+        </MyComponent>
+        <MyComponent text="How are you">
+        This is a how are you.
+        </MyComponent>
+        <MyComponent text="Goodbye">
+        This is a goodbye
+        </MyComponent>
+      </div>
+      , document.getElementById('myDiv')
+      );
+    </script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+      var NoLink = React.createClass({
+        getInitialState: function(){
+          return {message: 'Hello'};
+        },
+        handleChange: function(event){
+          this.setState({message: event.target.value});
+        },
+        render: function(){
+          var message = this.state.message;
+          return <input type="text" value={message} onChange={this.handleChange} />
+        }
+      })
+
+      ReactDOM.render(
+        <NoLink/>,
+        document.getElementById('example')
+      );
+
+      var LinkedStateMixin = React.addons.LinkedStateMixin;
+      var WithLink = React.createClass({
+        mixins: [LinkedStateMixin],
+        getInitialState: function(){
+          return {
+          message: 'Hello',
+          checked: false
+          };
+        },
+        render: function(){
+          return (
+          <div>
+            <input type="text" valueLink={this.linkState('message')} />
+            <input type="checkbox" checkedLink={this.linkState('checked')}/>
+          </div>
+
+          )
+        }
+      })
+      ReactDOM.render(
+        <WithLink />,
+        document.getElementById('example2')
+      );
+
+    </script>
+  </body>
+</html>

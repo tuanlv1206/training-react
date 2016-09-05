@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+      var UserGist = React.createClass({
+        getInitialState: function(){
+          return {
+            username: '',
+            lastGistUrl: ''
+          };
+        },
+        componentDidMount: function(){
+          this.serverRequest = $.get(this.props.source, function(result){
+            var lastGist = result[0];
+            this.setState({
+              username: lastGist.owner.login,
+              lastGistUrl: lastGist.html_url
+            });
+          }.bind(this));
+        },
+        componentWillUnmount: function(){
+          this.serverRequest.abort();
+        },
+        render: function(){
+          return (
+              <div>
+                {this.state.username}'s last gist is
+                <a href={this.state.lastGistUrl}>here</a>
+              </div>
+            );
+        }
+      })
+
+      ReactDOM.render(
+        <UserGist source="https://api.github.com/users/octocat/gists"/>,
+        document.getElementById('example')
+      );
+      ReactDOM.render(<div>{0 > 1 && 'You have more than one item'}</div>,document.getElementById('example2'))
+    </script>
+  </body>
+</html>

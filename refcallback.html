@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+    var ControllInput = React.createClass({
+      render: function(){
+        return (
+          <input type="text"
+            ref={function(input){
+              if(input != null){
+                input.focus();
+              }
+            }}
+          />
+        );
+      }
+    })
+
+    var MyComponent = React.createClass({
+      handleClick: function(){
+        if(this.myTextInput != null){
+          this.myTextInput.focus();
+        }
+      },
+      render: function(){
+      return (
+          <div>
+            <input type="text" ref={(ref) => this.myTextInput= ref} />
+            <input
+              type="button"
+              value="Focus the text input"
+              onClick={this.handleClick}
+            />
+          </div>
+        );
+      }
+    });
+    ReactDOM.render(
+      <ControllInput />,
+      document.getElementById('example')
+    );
+    ReactDOM.render(
+      <MyComponent />,
+      document.getElementById('example2')
+    );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+    <style type="text/css">
+      .button {
+          display: block;
+          height: 100px;
+          width: 100px;
+          border: 1px solid #aaa;
+          border-radius: 25px;
+          font: bold 20px Helvetica, Arial, sans-serif;
+          text-align: center;
+          line-height: 100px;
+          cursor: pointer;
+          color: #fff;
+          background-color: #000;
+          /* Define transition on the "opacity" property. */
+          transition: opacity 0.5s ease-in;
+      }
+      .button.on {
+          color: #00FF00;
+          background-color: #006600;
+      }
+
+      .button.switch-enter {
+          opacity: 0.01;
+      }
+      .button.switch-enter.switch-enter-active {
+          opacity: 1.0;
+      }
+      .button.switch-leave {
+          /* Completely hide the button while it's being animated and before it's removed from the DOM. */
+          visibility: hidden;
+          height: 0px;
+          width: 0px;
+
+          /* Starting opacity */
+          opacity: 1.0;
+      }
+      .button.switch-leave.switch-leave-active {
+          /* Ending opacity:
+          Trigger opacity change so the "transitionend" event will fire, causing React to remove from the DOM. */
+          opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+      var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+      var Switch = React.createClass({
+          getInitialState: function() {
+              return {
+                  on: false
+              };
+          },
+          toggleOnOff: function(e) {
+              this.setState({on: !this.state.on});
+          },
+          render: function() {
+              var text = this.state.on ? "ON" : "OFF";
+              var className = this.state.on ? "on" : "";
+              className += " button"
+
+              var key = text;
+              return (
+                  <ReactCSSTransitionGroup transitionName="switch">
+                      <div key={key} className={className} onClick={this.toggleOnOff}>{text}</div>
+                  </ReactCSSTransitionGroup>
+              );
+
+          }
+      });
+
+      ReactDOM.render(
+        <Switch />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+    var ControllInput = React.createClass({
+      getInitialState: function(){
+        return {value: 'Hello'};
+      },
+      handleChange: function(event){
+        this.setState({value: event.target.value});
+      },
+      render: function(){
+        return (
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          );
+      }
+    });
+
+    var ControllCheckbox = React.createClass({
+      getInitialState: function(){
+        return {checked: true};
+      },
+      handleChaneg: function(e){
+        this.setState({checked: !e.target.value});
+      },
+      render: function(){
+        return (
+            <input
+              type="checkbox"
+              value={this.state.checked}
+              onClick={this.handleChange}
+            />
+          );
+      }
+    });
+
+    ReactDOM.render(
+      <ControllInput />,
+      document.getElementById('example')
+    );
+    ReactDOM.render(
+      <ControllCheckbox defaultChecked="1" />,
+      document.getElementById('example2')
+    );
+    </script>
+  </body>
+</html>

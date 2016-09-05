@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+      class Button extends React.Component{
+        render(){
+          return (
+            <button style={{background: this.props.color}}>{this.props.children}</button>
+          );
+        }
+      }
+
+      class Message extends React.Component {
+        render(){
+          return (
+            <div>
+              {this.props.text} <Button color={this.props.color}>Delete</Button>
+            </div>
+          );
+        }
+      }
+
+      class MessageList extends React.Component{
+        render(){
+          const color = "red";
+          const children = this.props.messages.map((message,i) => <Message text={message.text} color={color} key={i}/>);
+          return <div>{children}</div>;
+        }
+      }
+      ReactDOM.render(
+        <MessageList messages={[{text: 'hello'},{text: 'what'}]} />,
+        document.getElementById('example')
+      );
+
+
+
+
+    </script>
+  </body>
+</html>

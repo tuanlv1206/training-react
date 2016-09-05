@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-15.2.1.js"></script>
+        <script src="https://fb.me/react-dom-15.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+        <title>My First React File</title>
+
+    </head>
+    <body>
+    <span id="myDiv"></span>
+    <script type="text/babel">
+      var Box = React.createClass( {
+        getDefaultProps: function() {
+            return {
+                colorIndex: -1
+            }
+        },
+        getInitialState: function() {
+            return {
+                backgroundColor: "blue",
+                height: 200,
+                width: 200
+            }
+        },
+        update: function() {
+            console.log("start");
+            this.setState({colorIndex: this.state.colorIndex + 1});
+            console.log("end");
+        },
+        componentWillReceiveProps: function(nextProps) {
+            console.log("start 1");
+            var color = this.props.colors.split(',')[nextProps.colorIndex];
+            if(!color) {this.setState({colorIndex:0})}
+            this.setState({backgroundColor: color});
+            console.log("end 1");
+        },
+        render: function() {
+            return <div style={this.state} onClick={this.update}></div>;
+        }
+    });
+
+      ReactDOM.render(<Box colors="Red, DarkMagenta, Salmon, Charteuse"/>, document.getElementById('myDiv'));
+    </script>
+    </body>
+</html>

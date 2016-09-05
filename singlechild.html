@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script type="text/babel">
+    var MyComponent = React.createClass({
+      propTypes: {
+        children: React.PropTypes.element.isRequired
+      },
+
+      render: function(){
+        return (
+            <div>
+              {this.props.children}
+            </div>
+          );
+      }
+    });
+    ReactDOM.render(
+        <MyComponent>
+        <h1>Children</h1>
+        </MyComponent>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

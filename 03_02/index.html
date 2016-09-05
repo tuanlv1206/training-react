@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-15.2.1.js"></script>
+        <script src="https://fb.me/react-dom-15.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+        <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+        <title>My First React File</title>
+
+    </head>
+    <body>
+    <div id="myDiv"></div>
+    <script type="text/jsx">
+      var ReactComponent = React.createClass({
+        render: function() {
+          return <div>My React Component</div>;
+        }
+      });
+
+      ReactDOM.render(
+      <div>
+        <ReactComponent />
+        <ReactComponent />
+        <ReactComponent />
+      </div>,
+      document.getElementById('myDiv')
+      );
+    </script>
+    </body>
+</html>
